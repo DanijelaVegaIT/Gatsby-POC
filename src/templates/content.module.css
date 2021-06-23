@@ -1,0 +1,17 @@
+.contentPage{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0px 50px;
+}
+
+.contentPage h1{
+    color:gray;
+    font-size: 200%;
+    text-transform: uppercase;
+    margin: 20px 0px;
+}
+.contentPage p{
+    text-align: left;
+}

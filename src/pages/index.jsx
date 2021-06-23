@@ -1,0 +1,59 @@
+import * as React from "react"
+import { graphql } from "gatsby"
+import { Layout } from "../components/layout"
+import { ProductListing } from "../components/product-listing"
+import CarouselPage from "../components/carusel";
+import { StaticImage } from "gatsby-plugin-image";
+import Content from "../components/content";
+
+export const query = graphql`
+ query {
+    shopifyCollection(handle: { eq: "frontpage" }) {
+      products {
+        ...ProductCard
+      }
+    }
+    allMarkdownRemark {
+      nodes {
+        id
+        frontmatter {
+          slug
+          title
+          content
+          img {
+            id
+            childImageSharp {
+              gatsbyImageData(height: 200, width: 400, aspectRatio: 1.5)
+            }
+          }
+        }
+      }
+    }
+    }
+`
+
+
+export default function IndexPage({ data }) {
+
+  const top = {
+    color:"gray",
+    fontSize:'200%',
+    textAlign:"center",
+    margin:"20px 0px"
+  }
+
+  return (
+    <Layout>
+      <StaticImage 
+      src="https://images.unsplash.com/photo-1581631059762-566beaaa6be8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
+       alt="" 
+       placeholder="blurred"
+       width={1900}
+       height={700}/>
+       <h1 id="top" style={top}>TOP PRODUCTS</h1>
+      <CarouselPage images={data} />
+      <Content data={data} />
+      <ProductListing products={data.shopifyCollection.products} />
+    </Layout>
+  )
+}
