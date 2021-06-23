@@ -15,7 +15,7 @@ const pageQuery =`{
             }
           }
           images {
-            gatsbyImageData(aspectRatio: 1, width: 500)
+            gatsbyImageData(layout: CONSTRAINED, width: 300, height: 300 aspectRatio: 1)
             product {
               title
             }

@@ -12,7 +12,7 @@ exports.createPages = async ({graphql, actions}) =>{
             img {
               id
               childImageSharp {
-                gatsbyImageData(height: 600, width: 900, aspectRatio: 1.8)
+                gatsbyImageData(height: 300, width: 500, aspectRatio: 1.8)
               }
             }
           }
