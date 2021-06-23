@@ -72,7 +72,7 @@ export function Seo({
         sizes="32x32"
         href="/naduvi.png"
       />
-      <link
+      <link 
         rel="icon"
         type="image/png"
         sizes="16x16"
