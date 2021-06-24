@@ -46,7 +46,7 @@ export const query = graphql`
     shopifyCollection(handle: {eq: "frontpage"}) {
       products {
         images {
-          gatsbyImageData(width: 240, height:240, aspectRatio: 1)
+          gatsbyImageData(width: 245, height:245, aspectRatio: 1)
           product {
             handle
             title
@@ -67,7 +67,7 @@ export default function CarouselPage({ images }){
               alt='image'
               image={images.shopifyCollection.products[0].images[0].gatsbyImageData}
               loading="lazy"
-              style={{width: 240, height: 240}}
+              style={{width: 245, height: 245}}
             />
             </Link>
 
@@ -76,7 +76,7 @@ export default function CarouselPage({ images }){
               alt='image'
               image={images.shopifyCollection.products[1].images[0].gatsbyImageData}
               loading="lazy"
-              style={{width: 240, height: 240}}
+              style={{width: 245, height: 245}}
             />
             </Link>
 
@@ -85,7 +85,7 @@ export default function CarouselPage({ images }){
               alt='image'
               image={images.shopifyCollection.products[2].images[0].gatsbyImageData}
               loading="lazy"
-              style={{width: 240, height: 240}}
+              style={{width: 245, height: 245}}
             />
             </Link>
 
@@ -94,7 +94,7 @@ export default function CarouselPage({ images }){
               alt='image'
               image={images.shopifyCollection.products[3].images[0].gatsbyImageData}
               loading="lazy"
-              style={{width: 240, height: 240}}
+              style={{width: 245, height: 245}}
             />
             </Link>
 
@@ -103,7 +103,7 @@ export default function CarouselPage({ images }){
               alt='image'
               image={images.shopifyCollection.products[4].images[0].gatsbyImageData}
               loading="lazy"
-              style={{width: 240, height: 240}}
+              style={{width: 245, height: 245}}
             />
             </Link>
 
