@@ -106,7 +106,7 @@ function SearchPage({
     },
     sortKey,
     false,
-    24 // Products per page
+    100 // Products per page
   )
 
   // If we're using the default filters, use the products from the Gatsby data layer.

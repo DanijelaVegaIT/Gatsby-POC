@@ -31,7 +31,7 @@ const searchClient = algoliasearch('I90VV32WX6',
   showNext={true}
   showLast={true}
   padding={10}
-  totalPages={6}
+  totalPages={10}
   translations={{
     previous: '‹',
     next: '›',

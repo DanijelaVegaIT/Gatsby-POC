@@ -23,7 +23,15 @@ export const query = graphql`
           img {
             id
             childImageSharp {
-              gatsbyImageData(height: 200, width: 400, aspectRatio: 1.5)
+              gatsbyImageData(aspectRatio: 1.5)
+              fluid(maxHeight: 200, maxWidth: 400) {
+                base64
+                tracedSVG
+                srcWebp
+                srcSetWebp
+                originalImg
+                originalName
+              }
             }
           }
         }
@@ -48,8 +56,7 @@ export default function IndexPage({ data }) {
        src="hero.jpg"
        alt="" 
        placeholder="blurred"
-       width={1900}
-       height={700}/>
+       style={{width: "100%", maxHeight: 500}}/>
        <h1 id="top" style={top}>TOP PRODUCTS</h1>
       <CarouselPage images={data} />
       <Content data={data} />
