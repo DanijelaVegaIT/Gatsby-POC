@@ -41,6 +41,32 @@ input[type=search]::placeholder{
 padding-left:10px;
 }
 
+.ais-Pagination{
+display: flex;
+justify-content: center;
+font-weight: bold;
+color: gray;
+margin: 30px 0px;
+}
+
+.ais-Pagination-list{
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    list-style: none;
+    justify-content: space-around;
+    align-self: center;
+}
+
+.ais-Pagination-item{
+    transition: transform .2s; 
+}
+
+.ais-Pagination-item:hover{
+    transform: scale(1.5) !important;
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 700px) {
     .ais-Hits-item{
         width:80%;

@@ -4,6 +4,7 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+import "./carusel.css";
 
  const settings = {
   dots: true,
@@ -60,8 +61,8 @@ export const query = graphql`
 export default function CarouselPage({ images }){
 
   return (
-    <div style={{overflow:'hidden', margin:"30px 0px", display:'flex', justifyContent:"center"}}>
-    <Slider {...settings} style={{overflowx: "hidden", marginBottom: 50, width: "85vw", alignSelf:"center" }}>
+    <div className="caruselDiv">
+    <Slider {...settings} className="carusel">
       <Link to={images.shopifyCollection.products[0].slug}>  
     <GatsbyImage
               alt='image'

@@ -1,6 +1,6 @@
 import * as React from "react"
 import algoliasearch from 'algoliasearch/lite';
-import { InstantSearch, SearchBox, Hits } from 'react-instantsearch-dom';
+import { InstantSearch, SearchBox, Hits, Pagination } from 'react-instantsearch-dom';
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
 import { Layout } from "../components/layout"
@@ -24,9 +24,33 @@ const searchClient = algoliasearch('I90VV32WX6',
       <div>
       <InstantSearch searchClient={searchClient} indexName="test_CUST">
       <SearchBox />
+      <Pagination
+  defaultRefinement={1}
+  showFirst={true}
+  showPrevious={true}
+  showNext={true}
+  showLast={true}
+  padding={10}
+  totalPages={6}
+  translations={{
+    previous: '‹',
+    next: '›',
+    first: '«',
+    last: '»',
+    page(currentRefinement) {
+      return currentRefinement;
+    },
+    ariaPrevious: 'Previous page',
+    ariaNext: 'Next page',
+    ariaFirst: 'First page',
+    ariaLast: 'Last page',
+    ariaPage(currentRefinement) {
+      return `Page ${currentRefinement}`;
+    },
+  }}
+/>
       <Hits hitComponent={Hit} />
       </InstantSearch>
-
     </div>
     </Layout>
   )
