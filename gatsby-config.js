@@ -17,14 +17,14 @@ module.exports = {
 
   plugins: [
     'gatsby-transformer-remark',
-    {
-      resolve: 'gatsby-source-google-sheets',
-      options: {
-          spreadsheetId: '1GI_IgdmymxRCWoFT49eafFWgf21roVMIcG6Iy9j9wvY',
-          worksheetTitle: 'cover',
-          credentials: require('./client_secret.json')
-      }
-    },
+    // {
+    //   resolve: 'gatsby-source-google-sheets',
+    //   options: {
+    //       spreadsheetId: '1GI_IgdmymxRCWoFT49eafFWgf21roVMIcG6Iy9j9wvY',
+    //       worksheetTitle: 'cover',
+    //       credentials: require('./client_secret.json')
+    //   }
+    // },
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
