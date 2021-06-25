@@ -133,6 +133,9 @@
   color: var(--text-color-secondary);
 }
 
+.tagList{
+  width: 50vw;
+}
 .tagList a {
   font-weight: var(--semibold);
   color: var(--text-color-secondary);

@@ -102,6 +102,7 @@ export default function Product({ data: { product, suggestions } }) {
   const hasImages = images.length > 0
   const hasMultipleImages = true || images.length > 1
 
+  console.log(JSON.stringify(images[0].gatsbyImageData))
   return (
     <Layout>
       {firstImage ? (
@@ -121,23 +122,12 @@ export default function Product({ data: { product, suggestions } }) {
                 aria-describedby="instructions"
               >
                 <ul className={productImageList}>
-                  {images.map((image, index) => (
-                    <li
-                      key={`product-image-${image.id}`}
-                      className={productImageListItem}
-                    >
                       <GatsbyImage
                         objectFit="contain"
-                        loading={index === 0 ? "eager" : "lazy"}
-                        alt={
-                          image.altText
-                            ? image.altText
-                            : `Product Image of ${title} #${index + 1}`
-                        }
-                        image={image.gatsbyImageData}
+                        loading="eager"
+                        alt="product"
+                        image={images[0].gatsbyImageData}
                       />
-                    </li>
-                  ))}
                 </ul>
               </div>
               {hasMultipleImages && (
