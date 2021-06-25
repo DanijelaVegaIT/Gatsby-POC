@@ -4,6 +4,7 @@ import { InstantSearch, SearchBox, Hits, Pagination } from 'react-instantsearch-
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
 import { Layout } from "../components/layout"
+import slugify from "@sindresorhus/slugify"
 import {
     productCardStyle,
     productHeadingStyle,
@@ -58,10 +59,11 @@ const searchClient = algoliasearch('I90VV32WX6',
 
 
 const Hit = ({hit}) =>{
+  //console.log( hit.productType ? hit.productType : null )
     return (
     <Link
       className={productCardStyle}
-      to={`/products/${hit.handle}`}
+      to={`/products/${hit.productType ? slugify(hit.productType) + "/" + hit.handle : hit.handle}`}
       aria-label={`View ${hit.handle} product page`}
     >
            <div className={productImageStyle} data-name="product-image-box">

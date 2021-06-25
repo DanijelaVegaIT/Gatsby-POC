@@ -21,19 +21,21 @@ const pageQuery =`{
             }
           }
           handle
+          productType
         }
       }
     }
       }
   `
 
-function pageToAlgoliaRecord({ node: { id, priceRangeV2,  images , handle } }) {
+function pageToAlgoliaRecord({ node: { id, priceRangeV2,  images , handle, productType } }) {
   return {
     objectID: id,
     id,
     images, 
     priceRangeV2, 
-    handle
+    handle,
+    productType
   }
 }
 

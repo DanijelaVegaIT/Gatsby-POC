@@ -45,7 +45,7 @@ export const query = graphql`
       tags: distinct(field: tags)
       vendors: distinct(field: vendor)
     }
-    products: allShopifyProduct(limit: 24, sort: { fields: title }) {
+    products: allShopifyProduct(limit: 10000, sort: { fields: title }) {
       edges {
         node {
           title
@@ -238,9 +238,7 @@ function SearchPage({
                     product={{
                       title: node.title,
                       priceRangeV2: node.priceRangeV2,
-                      slug: `/products${slugify(node.productType)}/${
-                        node.handle
-                      }`,
+                      slug: `/products/${node.productType ? slugify(node.productType) + "/" + node.handle : node.handle}`,
                       // The search API and Gatsby data layer have slightly different images available.
                       images: isDefault ? node.images : [],
                       storefrontImages: !isDefault && node.images,
