@@ -2,7 +2,7 @@
 const indexName = `test_CUST`
 
 const pageQuery =`{
-     products: allShopifyProduct(limit: 400) {
+     products: allShopifyProduct(limit: 200) {
       edges {
         node {
           id
@@ -24,11 +24,11 @@ const pageQuery =`{
   }
   `
 
-function pageToAlgoliaRecord({ node: { id, priceRangeV2, handle, title, productType } }) {
+function pageToAlgoliaRecord({ node: { id, handle, title, productType, images } }) {
   return {
     objectID: id,
-    priceRangeV2, 
     handle,
+    images,
     title,
     productType
   }

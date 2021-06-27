@@ -79,15 +79,15 @@ module.exports = {
         trackingId: process.env.GOOGLE_ANALYTICS_ID,
       },
     },
-    {
-      resolve: `gatsby-plugin-algolia`,
-      options: {
-        appId: 'DHQNQ5IZ4A',
-        // Use Admin API key without GATSBY_ prefix, so that the key isn't exposed in the application
-        // Tip: use Search API key with GATSBY_ prefix to access the service from within components
-        apiKey: 'bdb75d442b05c368746142e8cf30ec8b',
-        queries: require("./src/utils/algolia-queries")
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-algolia`,
+    //   options: {
+    //     appId: 'I90VV32WX6',
+    //     // Use Admin API key without GATSBY_ prefix, so that the key isn't exposed in the application
+    //     // Tip: use Search API key with GATSBY_ prefix to access the service from within components
+    //     apiKey: 'bb4e439e171d68b6b10e47f25d95efc4',
+    //     queries: require("./src/utils/algolia-queries")
+    //   },
+    // },
   ].filter(Boolean),
 }

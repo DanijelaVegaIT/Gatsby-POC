@@ -29,8 +29,6 @@ export const query = graphql`
 
 export default function IndexPage({ data }) {
 
-  console.log(data.allGoogleSheet.nodes )
- // const src= `${data.allGoogleSheet.nodes[0].Sheet1[0]}`;
   const top = {
     color:"gray",
     fontSize:'200%',

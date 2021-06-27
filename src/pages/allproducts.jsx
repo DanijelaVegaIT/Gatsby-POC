@@ -18,8 +18,8 @@ import "./allproducts.css";
 
 export default function AlgoliaSearch({ data }) {
 
-const searchClient = algoliasearch('DHQNQ5IZ4A', 
-'5788a09283650f4146b2447417886e25');
+const searchClient = algoliasearch('I90VV32WX6', 
+'3e98a576ae2a9b992b0ee44aa82e61a1');
 
   return (
     <Layout>
@@ -68,7 +68,7 @@ const Hit = ({hit}) =>{
       aria-label={`View ${hit.handle} product page`}
     >
            <div className={productImageStyle} data-name="product-image-box">
-          {hit.images.length ?  <GatsbyImage
+          {hit.images !== undefined ?  <GatsbyImage
               alt="product"
               image={hit.images[0].gatsbyImageData}
               loading="lazy"
