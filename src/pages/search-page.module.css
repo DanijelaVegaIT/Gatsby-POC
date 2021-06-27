@@ -9,6 +9,18 @@
   width: 1px;
 }
 
+.loadmore{
+text-align: center;
+font-size: 20px;
+font-weight: bold;
+color: gray;
+margin: 20px 0px;
+}
+
+.loadmore h1{
+  cursor: pointer;
+}
+
 .main {
   display: grid;
   grid-template-columns: 1fr;

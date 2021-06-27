@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, {useState} from "react"
 import { graphql } from "gatsby"
 import slugify from "@sindresorhus/slugify"
 import debounce from "debounce"
@@ -15,6 +15,7 @@ import { Spinner } from "../components/progress"
 import { Filters } from "../components/filters"
 import { SearchProvider } from "../context/search-provider"
 import {
+  loadmore,
   visuallyHidden,
   main,
   search,
@@ -45,7 +46,7 @@ export const query = graphql`
       tags: distinct(field: tags)
       vendors: distinct(field: vendor)
     }
-    products: allShopifyProduct(limit: 10000, sort: { fields: title }) {
+    products: allShopifyProduct(limit: 10000, sort: {fields: title}) {
       edges {
         node {
           title
@@ -68,6 +69,10 @@ export const query = graphql`
           }
         }
       }
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+      }
     }
   }
 `
@@ -88,6 +93,7 @@ function SearchPage({
 
   // This modal is only used on mobile
   const [showModal, setShowModal] = React.useState(false)
+
 
   const {
     data,
@@ -154,6 +160,8 @@ function SearchPage({
   const currencyCode = getCurrencySymbol(
     products?.[0]?.node?.priceRangeV2?.minVariantPrice?.currencyCode
   )
+
+const[more, loadMore] = useState(50);
 
   return (
     <Layout>
@@ -231,7 +239,7 @@ function SearchPage({
           )}
           <ul className={productListStyle}>
             {!isFetching &&
-              productList.map(({ node }, index) => (
+              productList.slice(0,more).map(({ node }, index) => (
                 <li className={productListItem} key={node.id}>
                   <ProductCard
                     eager={index === 0}
@@ -248,14 +256,9 @@ function SearchPage({
                 </li>
               ))}
           </ul>
-          {hasPreviousPage || hasNextPage ? (
-            <Pagination
-              previousPage={fetchPreviousPage}
-              hasPreviousPage={hasPreviousPage}
-              nextPage={fetchNextPage}
-              hasNextPage={hasNextPage}
-            />
-          ) : undefined}
+          <div className={loadmore}>
+          <h1 onClick={e => loadMore(more + 50)}> load more </h1>
+</div>
         </section>
       </div>
     </Layout>
@@ -302,29 +305,6 @@ function SearchBar({ defaultTerm, setFilters }) {
 /**
  * Shopify only supports next & previous navigation
  */
-function Pagination({ previousPage, hasPreviousPage, nextPage, hasNextPage }) {
-  return (
-    <nav className={pagination}>
-      <button
-        className={paginationButton}
-        disabled={!hasPreviousPage}
-        onClick={previousPage}
-        aria-label="Previous page"
-      >
-        <CgChevronLeft />
-      </button>
-      <button
-        className={paginationButton}
-        disabled={!hasNextPage}
-        onClick={nextPage}
-        aria-label="Next page"
-      >
-        <CgChevronRight />
-      </button>
-    </nav>
-  )
-}
-
 export default function SearchPageTemplate(props) {
   return (
     <SearchProvider>

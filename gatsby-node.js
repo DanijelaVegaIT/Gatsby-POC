@@ -2,30 +2,24 @@ const path = require('path');
 
 exports.createPages = async ({graphql, actions}) =>{
     const { data } = await graphql(`{
-      allMarkdownRemark {
-        nodes {
-          id
-          frontmatter {
-            slug
-            title
-            content
-            img {
-              id
-              childImageSharp {
-                gatsbyImageData(height: 300, width: 500, aspectRatio: 1.8)
-              }
-            }
-          }
-        }
+  allGoogleSheet {
+    nodes {
+      id
+      Sheet1 {
+        text
+        title
+        slug
       }
+    }
+  }
     }`)
 
 
-    data.allMarkdownRemark.nodes.forEach(node=>{
+    data.allGoogleSheet.nodes[0].Sheet1.forEach(node=>{
         actions.createPage({
-            path: '/content/' + node.frontmatter.slug,
+            path: '/content/' + node.slug,
             component: path.resolve('./src/templates/content-details.js'),
-            context: { slug: node.frontmatter.slug, title:node.frontmatter.title, content:node.frontmatter.content, img: node.frontmatter.img.childImageSharp } 
+            context: { slug: node.slug, title:node.title, content:node.text } 
         })
     })
 }

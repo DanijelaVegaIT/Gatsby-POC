@@ -1,10 +1,8 @@
 
-
-const pagePath = `products`
 const indexName = `test_CUST`
 
 const pageQuery =`{
-    products:  allShopifyProduct {
+     products: allShopifyProduct(limit: 400) {
       edges {
         node {
           id
@@ -15,29 +13,27 @@ const pageQuery =`{
             }
           }
           images {
-            gatsbyImageData(layout: CONSTRAINED, width: 300, height: 300 aspectRatio: 1)
-            product {
-              title
-            }
+            gatsbyImageData(aspectRatio: 1, width: 500)
           }
           handle
+          title
           productType
         }
       }
     }
-      }
+  }
   `
 
-function pageToAlgoliaRecord({ node: { id, priceRangeV2,  images , handle, productType } }) {
+function pageToAlgoliaRecord({ node: { id, priceRangeV2, handle, title, productType } }) {
   return {
     objectID: id,
-    id,
-    images, 
     priceRangeV2, 
     handle,
+    title,
     productType
   }
 }
+
 
 const queries = [
   {
@@ -47,5 +43,6 @@ const queries = [
     settings: { attributesToSnippet: [`excerpt:20`] },
   },
 ]
+
 
 module.exports = queries

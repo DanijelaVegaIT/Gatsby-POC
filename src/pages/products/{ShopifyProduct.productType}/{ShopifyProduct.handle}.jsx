@@ -102,7 +102,6 @@ export default function Product({ data: { product, suggestions } }) {
   const hasImages = images.length > 0
   const hasMultipleImages = true || images.length > 1
 
-  console.log(JSON.stringify(images[0].gatsbyImageData))
   return (
     <Layout>
       {firstImage ? (

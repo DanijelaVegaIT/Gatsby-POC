@@ -5,20 +5,16 @@ import { GatsbyImage } from "gatsby-plugin-image";
 
 export default function Content({data}){
 
-   const content = data.allMarkdownRemark.nodes;
+   const content = data.allGoogleSheet.nodes[0].Sheet1;
 
     return(
           <div className={contentBoxes}>
-          {content.map(item=>{
-            return <div key={item.id} className={contentBox}>
-            <Link to={"/content/" + item.frontmatter.slug} key={item.id}>
+          {content.map((item,index)=>{
+            return <div key={index} className={contentBox}>
+            <Link to={"/content/" + item.slug} key={index}>
               <div>
-          <GatsbyImage
-          alt={item.frontmatter.title}
-          image={item.frontmatter.img.childImageSharp.gatsbyImageData}
-        />
-            <h1><strong>{item.frontmatter.title}</strong></h1>
-            <p>{item.frontmatter.content.slice(0, 200) + "..."}</p>
+            <h1><strong>{item.title}</strong></h1>
+            <p>{item.text.slice(0, 200) + "..."}}</p>
             </div>
             </Link>
             </div>

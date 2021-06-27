@@ -17,14 +17,21 @@ module.exports = {
 
   plugins: [
     'gatsby-transformer-remark',
-    // {
-    //   resolve: 'gatsby-source-google-sheets',
-    //   options: {
-    //       spreadsheetId: '1GI_IgdmymxRCWoFT49eafFWgf21roVMIcG6Iy9j9wvY',
-    //       worksheetTitle: 'cover',
-    //       credentials: require('./client_secret.json')
-    //   }
-    // },
+    {
+      resolve: `gatsby-plugin-remote-images`,
+      options: {
+        nodeType: 'GoogleSheet',
+        name: 'localImages',
+        imagePath: 'nodes[].Sheet1[].cover',
+      },
+    },
+    {
+      resolve: 'gatsby-source-google-spreadsheets',
+      options: {
+        spreadsheetId: '1GI_IgdmymxRCWoFT49eafFWgf21roVMIcG6Iy9j9wvY',
+        credentials: require('./client_secret.json')
+      }
+    },
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
@@ -50,23 +57,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `markdown`,
-        path: `${__dirname}/src/markdown/`,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-algolia`,
-      options: {
-        appId: 'I90VV32WX6',
-        // Use Admin API key without GATSBY_ prefix, so that the key isn't exposed in the application
-        // Tip: use Search API key with GATSBY_ prefix to access the service from within components
-        apiKey: 'bb4e439e171d68b6b10e47f25d95efc4',
-        queries: require("./src/utils/algolia-queries")
-      },
-    },
-    {
       resolve: "gatsby-source-shopify",
       options: {
         apiKey: process.env.SHOPIFY_API_KEY,
@@ -87,6 +77,16 @@ module.exports = {
       resolve: "gatsby-plugin-google-analytics",
       options: {
         trackingId: process.env.GOOGLE_ANALYTICS_ID,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: 'DHQNQ5IZ4A',
+        // Use Admin API key without GATSBY_ prefix, so that the key isn't exposed in the application
+        // Tip: use Search API key with GATSBY_ prefix to access the service from within components
+        apiKey: 'bdb75d442b05c368746142e8cf30ec8b',
+        queries: require("./src/utils/algolia-queries")
       },
     },
   ].filter(Boolean),

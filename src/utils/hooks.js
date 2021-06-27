@@ -177,6 +177,7 @@ export function useProductSearch(
   }, [result.data])
 
   const fetchPreviousPage = () => {
+    console.log(result)
     const products = result.data.products
     // when we go back we want all products before the first one of our array
     const previousCursor = products.edges[0].cursor

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { graphql } from "gatsby"
+import { graphql, getImage } from "gatsby"
 import { Layout } from "../components/layout"
 import { ProductListing } from "../components/product-listing"
 import CarouselPage from "../components/carusel";
@@ -12,37 +12,25 @@ export const query = graphql`
       products {
         ...ProductCard
       }
-    }
-    allMarkdownRemark {
+    } 
+    allGoogleSheet {
       nodes {
         id
-        frontmatter {
-          slug
+        Sheet1 {
+          text
           title
-          content
-          img {
-            id
-            childImageSharp {
-              gatsbyImageData(aspectRatio: 1.5)
-              fluid(maxHeight: 200, maxWidth: 400) {
-                base64
-                tracedSVG
-                srcWebp
-                srcSetWebp
-                originalImg
-                originalName
-              }
-            }
-          }
+          slug
         }
       }
     }
-    }
+  }
 `
 
 
 export default function IndexPage({ data }) {
 
+  console.log(data.allGoogleSheet.nodes )
+ // const src= `${data.allGoogleSheet.nodes[0].Sheet1[0]}`;
   const top = {
     color:"gray",
     fontSize:'200%',
@@ -53,7 +41,7 @@ export default function IndexPage({ data }) {
   return (
     <Layout>
       <StaticImage 
-       src="hero.jpg"
+       src='hero.jpg'
        alt="" 
        placeholder="blurred"
        style={{width: "100%", maxHeight: 500}}/>

@@ -14,11 +14,12 @@ import {
   } from "../components/product-card.module.css"
 import "./allproducts.css";
 
+
+
 export default function AlgoliaSearch({ data }) {
 
-const searchClient = algoliasearch('I90VV32WX6', 
-'3e98a576ae2a9b992b0ee44aa82e61a1');
-
+const searchClient = algoliasearch('DHQNQ5IZ4A', 
+'5788a09283650f4146b2447417886e25');
 
   return (
     <Layout>
@@ -59,7 +60,7 @@ const searchClient = algoliasearch('I90VV32WX6',
 
 
 const Hit = ({hit}) =>{
-  //console.log( hit.productType ? hit.productType : null )
+  console.log( hit )
     return (
     <Link
       className={productCardStyle}
@@ -67,17 +68,18 @@ const Hit = ({hit}) =>{
       aria-label={`View ${hit.handle} product page`}
     >
            <div className={productImageStyle} data-name="product-image-box">
-            <GatsbyImage
-              alt={hit.images[0].product.title}
+          {hit.images.length ?  <GatsbyImage
+              alt="product"
               image={hit.images[0].gatsbyImageData}
               loading="lazy"
               aspectratio={1}
-            />
+            /> : <h1>NO IMG</h1>
+          }
           </div>
 
           <div className={productDetailsStyle}>
           <h2 as="h2" className={productHeadingStyle}>
-              {hit.images[0].product.title}
+              NO 
             </h2>
             <div className={productPrice}>{hit.priceRangeV2.maxVariantPrice.amount}</div>
           </div>
@@ -86,3 +88,28 @@ const Hit = ({hit}) =>{
 )
 }
 
+//  {hit.images[0].product.title}
+
+const pageQuery =`{
+  allShopifyProduct {
+   edges {
+     node {
+       id
+       priceRangeV2 {
+         maxVariantPrice {
+           amount
+           currencyCode
+         }
+       }
+       images {
+         gatsbyImageData(aspectRatio: 1, width: 500)
+       }
+       handle
+       title
+       productType
+       excerpt(pruneLength: 5000)
+     }
+   }
+ }
+   }
+`

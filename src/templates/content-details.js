@@ -9,11 +9,6 @@ export default function ContentDetails({pageContext}) {
         <Layout>
         <div className={contentPage}>
         <h1>{pageContext.title}</h1>
-        <GatsbyImage
-          alt={pageContext.title}
-          image={pageContext.img.gatsbyImageData}
-          loading="lazy"
-        />
         <br/>
         <br/>
         <p>{pageContext.content}</p>
@@ -21,3 +16,9 @@ export default function ContentDetails({pageContext}) {
         </Layout>
     )
 }
+
+{/* <GatsbyImage
+alt={pageContext.title}
+image={pageContext.img.gatsbyImageData}
+loading="lazy"
+/> */}
