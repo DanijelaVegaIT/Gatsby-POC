@@ -1,5 +1,5 @@
 import * as React from "react"
-import { graphql, getImage } from "gatsby"
+import { graphql } from "gatsby"
 import { Layout } from "../components/layout"
 import { ProductListing } from "../components/product-listing"
 import CarouselPage from "../components/carusel";
