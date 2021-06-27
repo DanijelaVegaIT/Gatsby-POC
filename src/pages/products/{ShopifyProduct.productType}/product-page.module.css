@@ -134,7 +134,7 @@
 }
 
 .tagList{
-  width: 50vw;
+  width: 40vw;
 }
 .tagList a {
   font-weight: var(--semibold);

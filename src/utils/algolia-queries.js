@@ -13,7 +13,7 @@ const pageQuery =`{
             }
           }
           images {
-            gatsbyImageData(aspectRatio: 1, width: 500)
+            gatsbyImageData(aspectRatio: 1, width: 200)
           }
           handle
           title

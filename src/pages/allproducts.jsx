@@ -1,7 +1,7 @@
 import * as React from "react"
 import algoliasearch from 'algoliasearch/lite';
 import { InstantSearch, SearchBox, Hits, Pagination } from 'react-instantsearch-dom';
-import { GatsbyImage } from "gatsby-plugin-image"
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
 import { Layout } from "../components/layout"
 import slugify from "@sindresorhus/slugify"
@@ -9,8 +9,7 @@ import {
     productCardStyle,
     productHeadingStyle,
     productImageStyle,
-    productDetailsStyle,
-    productPrice,
+    productDetailsStyle
   } from "../components/product-card.module.css"
 import "./allproducts.css";
 
@@ -60,7 +59,7 @@ const searchClient = algoliasearch('I90VV32WX6',
 
 
 const Hit = ({hit}) =>{
-  console.log( hit )
+  console.log( hit.images )
     return (
     <Link
       className={productCardStyle}
@@ -68,20 +67,20 @@ const Hit = ({hit}) =>{
       aria-label={`View ${hit.handle} product page`}
     >
            <div className={productImageStyle} data-name="product-image-box">
-          {hit.images !== undefined ?  <GatsbyImage
+          {hit.images[0] !== undefined ?  <GatsbyImage
               alt="product"
               image={hit.images[0].gatsbyImageData}
               loading="lazy"
               aspectratio={1}
-            /> : <h1>NO IMG</h1>
+            /> : 
+            <StaticImage alt="no image" src="../icons/noimg.png" />
           }
           </div>
 
           <div className={productDetailsStyle}>
           <h2 as="h2" className={productHeadingStyle}>
-              NO 
+              {hit.title}
             </h2>
-            <div className={productPrice}>{hit.priceRangeV2.maxVariantPrice.amount}</div>
           </div>
 
         </Link>
@@ -102,7 +101,7 @@ const pageQuery =`{
          }
        }
        images {
-         gatsbyImageData(aspectRatio: 1, width: 500)
+         gatsbyImageData(aspectRatio: 1, width: 200)
        }
        handle
        title
