@@ -41,7 +41,6 @@ export default function IndexPage({ data }) {
       <StaticImage 
        src='hero.jpg'
        alt="" 
-       placeholder="blurred"
        style={{width: "100%", maxHeight: 500}}/>
        <h1 id="top" style={top}>TOP PRODUCTS</h1>
       <CarouselPage images={data} />

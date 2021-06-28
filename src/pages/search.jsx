@@ -242,7 +242,7 @@ const[more, loadMore] = useState(50);
               productList.slice(0,more).map(({ node }, index) => (
                 <li className={productListItem} key={node.id}>
                   <ProductCard
-                    eager={index === 0}
+                    eager={true}
                     product={{
                       title: node.title,
                       priceRangeV2: node.priceRangeV2,

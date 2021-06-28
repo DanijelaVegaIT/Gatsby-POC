@@ -6,6 +6,8 @@
 
 .container {
   padding: var(--size-gutter-raw);
+  width: 90vw;
+  overflow-x: hidden;
 }
 
 .header {
@@ -16,7 +18,7 @@
 }
 
 .productDescription {
-  font-size: var(--text-prose);
+  font-size: 15px;
 }
 
 .productImageWrapper {
@@ -134,12 +136,13 @@
 }
 
 .tagList{
-  width: 40vw;
+  width: 30vw;
 }
 .tagList a {
   font-weight: var(--semibold);
   color: var(--text-color-secondary);
   padding-right: var(--space-md);
+  font-size: 12px;
 }
 
 .tagList a:hover {

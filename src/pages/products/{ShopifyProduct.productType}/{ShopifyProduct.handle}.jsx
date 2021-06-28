@@ -227,7 +227,7 @@ export const query = graphql`
       images {
         # altText
         id
-        gatsbyImageData(layout: CONSTRAINED, width: 500, height: 400 aspectRatio: 1)
+        gatsbyImageData(layout: CONSTRAINED, width: 400, height: 300 aspectRatio: 1)
       }
       variants {
         availableForSale

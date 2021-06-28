@@ -32,7 +32,7 @@ const searchClient = algoliasearch('I90VV32WX6',
   showNext={true}
   showLast={true}
   padding={10}
-  totalPages={10}
+  totalPages={20}
   translations={{
     previous: '‹',
     next: '›',
@@ -70,7 +70,7 @@ const Hit = ({hit}) =>{
           {hit.images[0] !== undefined ?  <GatsbyImage
               alt="product"
               image={hit.images[0].gatsbyImageData}
-              loading="lazy"
+              loading="eager"
               aspectratio={1}
             /> : 
             <StaticImage alt="no image" src="../icons/noimg.png" />
@@ -87,7 +87,6 @@ const Hit = ({hit}) =>{
 )
 }
 
-//  {hit.images[0].product.title}
 
 const pageQuery =`{
   allShopifyProduct {
@@ -106,7 +105,6 @@ const pageQuery =`{
        handle
        title
        productType
-       excerpt(pruneLength: 5000)
      }
    }
  }
