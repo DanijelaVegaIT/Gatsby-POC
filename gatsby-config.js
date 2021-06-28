@@ -18,6 +18,14 @@ module.exports = {
   plugins: [
     'gatsby-transformer-remark',
     {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: `v1pnj1jz28kg`,
+        // Learn about environment variables: https://gatsby.dev/env-vars
+        accessToken: 'L5KLXmUxQzlaHbvC2CAl-zLb6xiuatSxNdQ41YfMfhU',
+      },
+    },
+    {
       resolve: `gatsby-plugin-remote-images`,
       options: {
         nodeType: 'AllGoogleSheet',
@@ -81,5 +89,6 @@ module.exports = {
         queries: require("./src/utils/algolia-queries")
       },
     },
+    
   ].filter(Boolean),
 }

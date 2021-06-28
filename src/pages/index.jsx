@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import { Layout } from "../components/layout"
 import { ProductListing } from "../components/product-listing"
 import CarouselPage from "../components/carusel";
-import { StaticImage } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import Content from "../components/content";
 
 export const query = graphql`
@@ -23,7 +23,15 @@ export const query = graphql`
         }
       }
     }
-  } 
+  allContentfulAsset {
+        edges {
+          node {
+            id
+            gatsbyImageData
+          }
+        }
+      }
+    }  
 `
 
 export default function IndexPage({ data }) {
@@ -34,13 +42,15 @@ export default function IndexPage({ data }) {
     textAlign:"center",
     margin:"20px 0px"
   }
-
+console.log(data.allContentfulAsset.edges[0].node.gatsbyImageData.images)
   return (
     <Layout>
-      <StaticImage 
-       src='hero.jpg'
-       alt="image" 
-       style={{width: "100%", maxHeight: 500}}/>
+           <GatsbyImage
+                alt='image'
+                image={data.allContentfulAsset.edges[0].node.gatsbyImageData}
+                loading="lazy"
+                style={{width: "100%", maxHeight: 500}}
+              />
        <h1 id="top" style={top}>TOP PRODUCTS</h1>
       <CarouselPage images={data} />
       <Content data={data} />
