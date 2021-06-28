@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image";
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
@@ -41,74 +41,24 @@ import "./carusel.css";
   ]
 };
 
-
-export const query = graphql`
-  query {
-    shopifyCollection(handle: {eq: "frontpage"}) {
-      products {
-        images {
-          gatsbyImageData(width: 245, height:245, aspectRatio: 1)
-          product {
-            handle
-            title
-          }
-        }
-        id
-      }
-    }
-  }`  
-
-export default function CarouselPage({ images }){
+export default function CarouselPage({images}){
 
   return (
     <div className="caruselDiv">
     <Slider {...settings} className="carusel">
-      <Link to={images.shopifyCollection.products[0].slug}>  
-    <GatsbyImage
-              alt='image'
-              image={images.shopifyCollection.products[0].images[0].gatsbyImageData}
-              loading="lazy"
-              style={{width: 245, height: 245}}
-            />
-            </Link>
-
-            <Link to={images.shopifyCollection.products[1].slug}>  
-                 <GatsbyImage
-              alt='image'
-              image={images.shopifyCollection.products[1].images[0].gatsbyImageData}
-              loading="lazy"
-              style={{width: 245, height: 245}}
-            />
-            </Link>
-
-            <Link to={images.shopifyCollection.products[2].slug}>  
-                             <GatsbyImage
-              alt='image'
-              image={images.shopifyCollection.products[2].images[0].gatsbyImageData}
-              loading="lazy"
-              style={{width: 245, height: 245}}
-            />
-            </Link>
-
-            <Link to={images.shopifyCollection.products[3].slug}>  
-                             <GatsbyImage
-              alt='image'
-              image={images.shopifyCollection.products[3].images[0].gatsbyImageData}
-              loading="lazy"
-              style={{width: 245, height: 245}}
-            />
-            </Link>
-
-            <Link to={images.shopifyCollection.products[4].slug}>  
-                             <GatsbyImage
-              alt='image'
-              image={images.shopifyCollection.products[4].images[0].gatsbyImageData}
-              loading="lazy"
-              style={{width: 245, height: 245}}
-            />
-            </Link>
-
+   {images.shopifyCollection.products.map((image,index) =>{
+      return  <Link to={image.slug} key={index}>  
+      <GatsbyImage
+                alt='image'
+                image={image.images[0].gatsbyImageData}
+                loading="lazy"
+                style={{width: 245, height: 245}}
+              />
+              </Link>
+    })
+  }
     </Slider>
     </div>
   )
 }
+

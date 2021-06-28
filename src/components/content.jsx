@@ -14,7 +14,7 @@ export default function Content({data}){
             <Link to={"/content/" + item.slug} key={index}>
               <div>
             <h1><strong>{item.title}</strong></h1>
-            <p>{item.text.slice(0, 200) + "..."}}</p>
+            <p>{item.text.slice(0, 200) + "..."}</p>
             </div>
             </Link>
             </div>

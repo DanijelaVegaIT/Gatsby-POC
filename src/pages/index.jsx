@@ -23,9 +23,8 @@ export const query = graphql`
         }
       }
     }
-  }
+  } 
 `
-
 
 export default function IndexPage({ data }) {
 
@@ -40,7 +39,7 @@ export default function IndexPage({ data }) {
     <Layout>
       <StaticImage 
        src='hero.jpg'
-       alt="" 
+       alt="image" 
        style={{width: "100%", maxHeight: 500}}/>
        <h1 id="top" style={top}>TOP PRODUCTS</h1>
       <CarouselPage images={data} />
