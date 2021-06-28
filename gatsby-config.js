@@ -20,7 +20,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-remote-images`,
       options: {
-        nodeType: 'GoogleSheet',
+        nodeType: 'AllGoogleSheet',
         name: 'localImages',
         imagePath: 'nodes[].Sheet1[].cover',
       },
