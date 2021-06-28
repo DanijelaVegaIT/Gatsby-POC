@@ -42,7 +42,7 @@ export default function IndexPage({ data }) {
     textAlign:"center",
     margin:"20px 0px"
   }
-console.log(data.allContentfulAsset.edges[0].node.gatsbyImageData.images)
+
   return (
     <Layout>
            <GatsbyImage
